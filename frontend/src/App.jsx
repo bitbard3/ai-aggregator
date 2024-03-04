@@ -1,5 +1,13 @@
+import { Routes, Route } from "react-router-dom";
+import Navigate from "./pages/Navigate";
 function App() {
-  return <></>;
+  return (
+    <>
+      <Routes>
+        <Route path="/models" element={<Navigate />}></Route>
+      </Routes>
+    </>
+  );
 }
 
 export default App;
