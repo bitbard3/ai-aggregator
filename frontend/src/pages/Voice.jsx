@@ -12,6 +12,7 @@ export default function Voice() {
           heading={"Text to Speech"}
           placeholder={"Enter your text ..."}
           button={"Generate"}
+          model={"tts"}
         />
         <div className="md:mt-8 mt-5 flex flex-col md:flex-row items-center justify-center md:gap-10 gap-5">
           <Audio />
