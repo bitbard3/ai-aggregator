@@ -38,6 +38,7 @@ export default function Prompt({ heading, placeholder, button, model }) {
       <Textarea
         onChange={(e) => setText(e.target.value)}
         placeholder={placeholder}
+        value={text}
       ></Textarea>
       <ModelButton onClick={onFetchClick} text={button} />
       <Suggestion />
