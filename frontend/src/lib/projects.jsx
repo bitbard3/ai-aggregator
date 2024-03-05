@@ -9,7 +9,7 @@ export const projects = [
     title: "Voice AI",
     description:
       "Empowering seamless communication: Text-to-Speech AI converts text into natural speech with clarity and fluidity.",
-    page: "/",
+    page: "/voice",
     icon: <TiMicrophoneOutline className="h-5 w-5 text-light" />,
   },
   {
