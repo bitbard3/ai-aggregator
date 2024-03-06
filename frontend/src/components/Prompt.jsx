@@ -27,7 +27,7 @@ export default function Prompt({
         { inputs: text },
         {
           headers: {
-            Authorization: "Bearer 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",
+            Authorization: `Bearer ${import.meta.env.VITE_KEY}`,
           },
           responseType: responseType,
         }
