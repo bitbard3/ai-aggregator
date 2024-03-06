@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Suggestion from "@/components/Suggestion";
 import { Textarea } from "@/components/ui/textarea";
 import ModelButton from "@/components/ModelButton";
@@ -18,10 +18,12 @@ export default function Prompt({
   type,
 }) {
   const aiModel = models.find((item) => item.model == model);
+  const [loading, setLoading] = useState(false);
   const API = aiModel.url;
   const [text, setText] = useRecoilState(prompt);
   const [apiOutput, setApiOutput] = useRecoilState(output);
   const onFetchClick = async () => {
+    setLoading(true);
     try {
       const res = await axios.post(
         API,
@@ -42,6 +44,8 @@ export default function Prompt({
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -52,7 +56,7 @@ export default function Prompt({
         placeholder={placeholder}
         value={text}
       ></Textarea>
-      <ModelButton onClick={onFetchClick} text={button} />
+      <ModelButton loading={loading} onClick={onFetchClick} text={button} />
       <Suggestion prompts={suggestions} />
     </>
   );

@@ -23,7 +23,7 @@ export const projects = [
     title: "Images AI",
     description:
       "Unlocking visual storytelling: Text-to-Image AI crafts vivid visuals from textual descriptions with unparalleled creativity.",
-    page: "/images",
+    page: "/image",
     icon: <RxImage className="h-5 w-5 text-light" />,
   },
   {
