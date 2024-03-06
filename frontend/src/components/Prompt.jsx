@@ -16,6 +16,7 @@ export default function Prompt({
   responseType,
   suggestions,
   type,
+  setModelLoading,
 }) {
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function Prompt({
   const [apiOutput, setApiOutput] = useRecoilState(output);
   const onFetchClick = async () => {
     setLoading(true);
+    setModelLoading(true);
     try {
       const res = await axios.post(
         API,
@@ -46,6 +48,7 @@ export default function Prompt({
       console.log(error);
     } finally {
       setLoading(false);
+      setModelLoading(false);
     }
   };
   return (

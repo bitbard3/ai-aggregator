@@ -3,7 +3,8 @@ import DownloadButton from "@/components/DownloadButton";
 import { CiImageOn } from "react-icons/ci";
 import { output } from "@/stores/atoms/output";
 import { useRecoilValue } from "recoil";
-export default function Image() {
+import Loader from "./Loader";
+export default function Image({ loading }) {
   const imageBlob = useRecoilValue(output);
   const handleDownload = () => {
     const link = document.createElement("a");
@@ -35,6 +36,11 @@ export default function Image() {
           text={"Download"}
         />
       </div>
+      {loading && (
+        <div className="h-full z-10 w-full bg-neutral-800 bg-opacity-70 flex items-center justify-center absolute top-0 bottom-0">
+          <Loader size={60} />
+        </div>
+      )}
     </>
   );
 }
