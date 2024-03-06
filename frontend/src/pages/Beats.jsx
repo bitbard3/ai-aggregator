@@ -9,12 +9,13 @@ export default function Beats() {
       <Navbar />
       <div className="h-full w-[80%] md:w-[70%] lg:w-[50%] flex flex-col justify-around md:mt-20 md:py-0 py-32">
         <Prompt
-          heading={"Text to Speech"}
+          heading={"Text to Audio"}
           placeholder={"Describe the music ..."}
           button={"Generate"}
           model={"tta"}
           suggestions={prompts}
           responseType={"blob"}
+          type={"audio/mpeg"}
         />
         <div className="md:mt-8 mt-5 flex flex-col md:flex-row items-center justify-center md:gap-10 gap-5">
           <Audio />

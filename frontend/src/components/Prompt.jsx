@@ -15,6 +15,7 @@ export default function Prompt({
   model,
   responseType,
   suggestions,
+  type,
 }) {
   const aiModel = models.find((item) => item.model == model);
   const API = aiModel.url;
@@ -33,9 +34,9 @@ export default function Prompt({
         }
       );
       if (responseType === "blob") {
-        const blob = new Blob([res.data], { type: "audio/mpeg" });
-        const audioUrl = URL.createObjectURL(blob);
-        setApiOutput(audioUrl);
+        const blob = new Blob([res.data], { type: type });
+        const assetUrl = URL.createObjectURL(blob);
+        setApiOutput(assetUrl);
       } else {
         setApiOutput(res.data);
       }
