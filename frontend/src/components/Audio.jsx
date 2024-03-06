@@ -1,6 +1,7 @@
 import { output } from "@/stores/atoms/output";
 import React from "react";
 import { useRecoilValue } from "recoil";
+import DownloadButton from "./DownloadButton";
 
 export default function Audio() {
   const audioBlob = useRecoilValue(output);
@@ -19,12 +20,7 @@ export default function Audio() {
       <>
         <p className="text-light md:text-xl text-lg">Output</p>
         <audio controls src={audioBlob}></audio>
-        <button
-          onClick={handleDownload}
-          className="px-5 py-1.5 text-light hover:opacity-90 text-sm bg-neutral-900 border border-neutral-700 rounded-md"
-        >
-          Download
-        </button>
+        <DownloadButton text={"Download"} onClick={handleDownload} />
       </>
     )
   );
