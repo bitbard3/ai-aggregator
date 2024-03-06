@@ -16,7 +16,7 @@ export const projects = [
     title: "Beats AI",
     description:
       "Experience seamless transformation: Text-to-Audio AI effortlessly converts text into beats and music",
-    page: "/",
+    page: "/beats",
     icon: <LuListMusic className="h-5 w-5 text-light" />,
   },
   {
