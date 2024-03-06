@@ -1,11 +1,11 @@
 import React from "react";
 import { PiLightbulb } from "react-icons/pi";
-import { prompts } from "@/lib/prompts/tts.prompts";
+
 import SuggestionButton from "./SuggestionButton";
 import { useRecoilState } from "recoil";
 import { prompt } from "@/stores/atoms/prompt";
 
-export default function Suggestion() {
+export default function Suggestion({ prompts }) {
   const [text, setText] = useRecoilState(prompt);
   return (
     <div className="w-full grid grid-cols-12 gap-4 mt-7">

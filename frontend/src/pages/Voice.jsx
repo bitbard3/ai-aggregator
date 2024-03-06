@@ -1,7 +1,7 @@
 import Audio from "@/components/Audio";
 import Navbar from "@/components/Navbar";
 import Prompt from "@/components/Prompt";
-
+import { prompts } from "@/lib/prompts/tts.prompts";
 import React from "react";
 export default function Voice() {
   return (
@@ -13,6 +13,8 @@ export default function Voice() {
           placeholder={"Enter your text ..."}
           button={"Generate"}
           model={"tts"}
+          suggestions={prompts}
+          responseType={"blob"}
         />
         <div className="md:mt-8 mt-5 flex flex-col md:flex-row items-center justify-center md:gap-10 gap-5">
           <Audio />

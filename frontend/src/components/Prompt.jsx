@@ -8,7 +8,14 @@ import { models } from "@/lib/models";
 import { useRecoilState } from "recoil";
 import { prompt } from "@/stores/atoms/prompt";
 import { output } from "@/stores/atoms/output";
-export default function Prompt({ heading, placeholder, button, model }) {
+export default function Prompt({
+  heading,
+  placeholder,
+  button,
+  model,
+  responseType,
+  suggestions,
+}) {
   const aiModel = models.find((item) => item.model == model);
   const API = aiModel.url;
   const [text, setText] = useRecoilState(prompt);
@@ -22,12 +29,16 @@ export default function Prompt({ heading, placeholder, button, model }) {
           headers: {
             Authorization: "Bearer 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",
           },
-          responseType: "blob",
+          responseType: responseType,
         }
       );
-      const blob = new Blob([res.data], { type: "audio/mpeg" });
-      const audioUrl = URL.createObjectURL(blob);
-      setApiOutput(audioUrl);
+      if (responseType === "blob") {
+        const blob = new Blob([res.data], { type: "audio/mpeg" });
+        const audioUrl = URL.createObjectURL(blob);
+        setApiOutput(audioUrl);
+      } else {
+        setApiOutput(res.data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +52,7 @@ export default function Prompt({ heading, placeholder, button, model }) {
         value={text}
       ></Textarea>
       <ModelButton onClick={onFetchClick} text={button} />
-      <Suggestion />
+      <Suggestion prompts={suggestions} />
     </>
   );
 }
