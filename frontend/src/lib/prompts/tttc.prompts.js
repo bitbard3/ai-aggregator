@@ -1,8 +1,8 @@
 export const prompts =
     [
         {
-            desc: 'I was absent because',
-            text: "Email",
+            desc: 'Email',
+            text: "I was absent because",
         },
         {
             desc: 'Story',
