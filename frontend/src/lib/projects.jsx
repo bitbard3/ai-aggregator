@@ -30,7 +30,7 @@ export const projects = [
     title: "Summarization AI",
     description:
       "Condensing complexity: Text Summarization AI distills lengthy text into concise, insightful summaries with speed and accuracy",
-    page: "/",
+    page: "/summary",
     icon: <MdShortText className="h-5 w-5 text-light" />,
   },
   {

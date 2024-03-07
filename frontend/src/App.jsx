@@ -3,6 +3,7 @@ import Navigate from "./pages/Navigate";
 import Voice from "./pages/Voice";
 import Beats from "./pages/Beats";
 import Images from "./pages/Images";
+import Summary from "./pages/Summary";
 function App() {
   return (
     <>
@@ -11,6 +12,7 @@ function App() {
         <Route path="/voice" element={<Voice />}></Route>
         <Route path="/beats" element={<Beats />}></Route>
         <Route path="/image" element={<Images />}></Route>
+        <Route path="/summary" element={<Summary />}></Route>
       </Routes>
     </>
   );
