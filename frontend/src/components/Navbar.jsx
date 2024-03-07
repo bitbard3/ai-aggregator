@@ -1,13 +1,24 @@
 import React from "react";
 import { RiCopperCoinLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
   return (
     <div className="fixed inset-x-0 max-w-2xl mx-auto z-50 md:top-2 top-0.5">
       <div className="relative md:rounded-full rounded-lg boder bg-black border-white/[0.2] border-b-2 flex justify-around space-x-10 px-4 py-5 md:py-7 backdrop-filter backdrop-blur-lg shadow-inner shadow-neutral-400">
         <div className="flex space-x-8 mt-1">
-          <p className="cursor-pointer hover:opacity-[0.9] text-light">Home</p>
-          <p className="cursor-pointer hover:opacity-[0.9] text-light">
+          <p
+            onClick={() => navigate("/")}
+            className="cursor-pointer hover:opacity-[0.9] text-light hover:border-b-2 hover:border-neutral-200"
+          >
+            Home
+          </p>
+          <p
+            onClick={() => navigate("/models")}
+            className="cursor-pointer hover:opacity-[0.9] text-light hover:border-b-2 hover:border-neutral-200"
+          >
             Models
           </p>
         </div>

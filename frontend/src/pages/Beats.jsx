@@ -2,8 +2,19 @@ import Audio from "@/components/Audio";
 import Navbar from "@/components/Navbar";
 import Prompt from "@/components/Prompt";
 import { prompts } from "@/lib/prompts/tta.prompts";
-import React from "react";
+import { output } from "@/stores/atoms/output";
+import { prompt } from "@/stores/atoms/prompt";
+import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
+
 export default function Beats() {
+  const setPrompt = useSetRecoilState(prompt);
+  const setValue = useSetRecoilState(output);
+  useEffect(() => {
+    setPrompt(null);
+    setValue(null);
+  }, []);
+  const [loading, setLoading] = useState(false);
   return (
     <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2]  relative flex items-start md:items-center justify-center">
       <Navbar />
@@ -15,10 +26,11 @@ export default function Beats() {
           model={"tta"}
           suggestions={prompts}
           responseType={"blob"}
+          setModelLoading={setLoading}
           type={"audio/mpeg"}
         />
         <div className="md:mt-8 mt-5 flex flex-col md:flex-row items-center justify-center md:gap-10 gap-5">
-          <Audio />
+          <Audio loading={loading} />
         </div>
       </div>
     </div>
