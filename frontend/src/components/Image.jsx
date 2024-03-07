@@ -32,7 +32,7 @@ export default function Image({ loading }) {
       <div className=" w-full flex justify-end">
         <DownloadButton
           onClick={handleDownload}
-          className="mt-5"
+          className="mt-5 mb-5"
           text={"Download"}
         />
       </div>

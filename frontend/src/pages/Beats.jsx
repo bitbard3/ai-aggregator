@@ -5,15 +5,15 @@ import { prompts } from "@/lib/prompts/tta.prompts";
 import { output } from "@/stores/atoms/output";
 import { prompt } from "@/stores/atoms/prompt";
 import React, { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
 export default function Beats() {
-  const setPrompt = useSetRecoilState(prompt);
-  const setValue = useSetRecoilState(output);
+  const [promptText, setPromptText] = useRecoilState(prompt);
+  const [value, setValue] = useRecoilState(output);
   useEffect(() => {
-    setPrompt(null);
+    setPromptText(null);
     setValue(null);
-  }, []);
+  }, [value, promptText]);
   const [loading, setLoading] = useState(false);
   return (
     <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2]  relative flex items-start md:items-center justify-center">

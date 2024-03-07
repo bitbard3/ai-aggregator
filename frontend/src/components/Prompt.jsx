@@ -17,6 +17,8 @@ export default function Prompt({
   suggestions,
   type,
   setModelLoading,
+  textClassName,
+  obj,
 }) {
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
@@ -42,7 +44,7 @@ export default function Prompt({
         const assetUrl = URL.createObjectURL(blob);
         setApiOutput(assetUrl);
       } else {
-        setApiOutput(res.data);
+        setApiOutput(res.data[0][obj]);
       }
     } catch (error) {
       console.log(error);
@@ -58,6 +60,7 @@ export default function Prompt({
         onChange={(e) => setText(e.target.value)}
         placeholder={placeholder}
         value={text}
+        className={textClassName}
       ></Textarea>
       <ModelButton loading={loading} onClick={onFetchClick} text={button} />
       <Suggestion prompts={suggestions} />
