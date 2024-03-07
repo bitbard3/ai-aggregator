@@ -2,18 +2,9 @@ import Audio from "@/components/Audio";
 import Navbar from "@/components/Navbar";
 import Prompt from "@/components/Prompt";
 import { prompts } from "@/lib/prompts/tts.prompts";
-import { output } from "@/stores/atoms/output";
-import { prompt } from "@/stores/atoms/prompt";
-import React, { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import React, { useState } from "react";
 
 export default function Voice() {
-  const [promptText, setPromptText] = useRecoilState(prompt);
-  const [value, setValue] = useRecoilState(output);
-  useEffect(() => {
-    setPromptText(null);
-    setValue(null);
-  }, [value, promptText]);
   const [loading, setLoading] = useState(false);
   return (
     <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2]  relative flex items-start md:items-center justify-center">

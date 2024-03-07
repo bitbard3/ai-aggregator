@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-export default function DownloadButton({ className, text, onClick }) {
+export default function ActionButton({ className, text, onClick }) {
   return (
     <button
       onClick={onClick}

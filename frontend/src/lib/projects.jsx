@@ -37,7 +37,7 @@ export const projects = [
     title: "Text Completion ",
     description:
       "Unleash creativity effortlessly: Text Completion AI generates fluent and contextually relevant text continuations, aiding in content creation with ease and accuracy.",
-    page: "/",
+    page: "/completion",
     icon: <CiTextAlignJustify className="h-5 w-5 text-light" />,
   },
   {

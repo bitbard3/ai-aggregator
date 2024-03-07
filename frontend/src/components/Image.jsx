@@ -1,5 +1,5 @@
 import React from "react";
-import DownloadButton from "@/components/DownloadButton";
+import ActionButton from "@/components/ActionButton";
 import { CiImageOn } from "react-icons/ci";
 import { output } from "@/stores/atoms/output";
 import { useRecoilValue } from "recoil";
@@ -30,7 +30,7 @@ export default function Image({ loading }) {
         )}
       </div>
       <div className=" w-full flex justify-end">
-        <DownloadButton
+        <ActionButton
           onClick={handleDownload}
           className="mt-5 mb-5"
           text={"Download"}

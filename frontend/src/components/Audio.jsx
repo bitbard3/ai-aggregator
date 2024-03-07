@@ -1,7 +1,7 @@
 import { output } from "@/stores/atoms/output";
 import React from "react";
 import { useRecoilValue } from "recoil";
-import DownloadButton from "./DownloadButton";
+import ActionButton from "./ActionButton";
 import Loader from "./Loader";
 
 export default function Audio({ loading }) {
@@ -22,7 +22,7 @@ export default function Audio({ loading }) {
         <>
           <p className="text-light md:text-xl text-lg">Output</p>
           <audio controls src={audioBlob}></audio>
-          <DownloadButton text={"Download"} onClick={handleDownload} />
+          <ActionButton text={"Download"} onClick={handleDownload} />
         </>
       )}
       {loading && <Loader size={30} />}
