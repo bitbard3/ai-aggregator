@@ -44,7 +44,7 @@ export const projects = [
     title: "Grammar AI",
     description:
       "Unleash creativity effortlessly: Text Completion AI generates fluent and contextually relevant text continuations, aiding in content creation with ease and accuracy",
-    page: "/",
+    page: "/grammar",
     icon: <RiEnglishInput className="h-5 w-5 text-light" />,
   },
 ];

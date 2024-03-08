@@ -5,6 +5,7 @@ import Beats from "./pages/Beats";
 import Images from "./pages/Images";
 import Summary from "./pages/Summary";
 import Completion from "./pages/Completion";
+import Grammar from "./pages/Grammar";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
         <Route path="/image" element={<Images />}></Route>
         <Route path="/summary" element={<Summary />}></Route>
         <Route path="/completion" element={<Completion />}></Route>
+        <Route path="/grammar" element={<Grammar />}></Route>
       </Routes>
     </>
   );
