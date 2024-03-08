@@ -1,12 +1,8 @@
-import { output } from "@/stores/atoms/output";
 import React from "react";
-import { useRecoilValue } from "recoil";
 import ActionButton from "./ActionButton";
 import Loader from "./Loader";
 
-export default function Audio({ loading }) {
-  const audioBlob = useRecoilValue(output);
-
+export default function Audio({ loading, audioBlob }) {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = audioBlob;
