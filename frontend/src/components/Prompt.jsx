@@ -5,9 +5,6 @@ import ModelButton from "@/components/ModelButton";
 import ModelHeader from "@/components/ModelHeader";
 import axios from "axios";
 import { models } from "@/lib/models";
-import { useRecoilState } from "recoil";
-import { prompt } from "@/stores/atoms/prompt";
-import { output } from "@/stores/atoms/output";
 export default function Prompt({
   heading,
   placeholder,
@@ -19,12 +16,13 @@ export default function Prompt({
   setModelLoading,
   textClassName,
   obj,
+  text,
+  setText,
+  setApiOutput,
 }) {
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
   const API = aiModel.url;
-  const [text, setText] = useRecoilState(prompt);
-  const [apiOutput, setApiOutput] = useRecoilState(output);
   const onFetchClick = async () => {
     setLoading(true);
     setModelLoading(true);
@@ -63,7 +61,7 @@ export default function Prompt({
         className={textClassName}
       ></Textarea>
       <ModelButton loading={loading} onClick={onFetchClick} text={button} />
-      <Suggestion prompts={suggestions} />
+      <Suggestion setText={setText} prompts={suggestions} />
     </>
   );
 }
