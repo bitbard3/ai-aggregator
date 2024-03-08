@@ -1,14 +1,14 @@
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { useRecoilValue, useSetRecoilState } from "recoil";
 import ActionButton from "./ActionButton";
-import { output } from "@/stores/atoms/output";
 import Loader from "./Loader";
-import { prompt } from "@/stores/atoms/prompt";
 
-export default function TextOutput({ loading, complete }) {
-  const textOutput = useRecoilValue(output);
-  const setPrompt = useSetRecoilState(prompt);
+export default function TextOutput({
+  loading,
+  complete,
+  setPrompt,
+  textOutput,
+}) {
   const handleDownload = () => {
     if (textOutput) {
       const link = document.createElement("a");

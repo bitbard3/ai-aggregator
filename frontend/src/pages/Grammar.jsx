@@ -3,9 +3,14 @@ import Prompt from "@/components/Prompt";
 import { prompts } from "@/lib/prompts/tttg.prompts";
 import React, { useState } from "react";
 import TextOutput from "@/components/TextOutput";
+import { grammarPrompt } from "@/stores/atoms/prompt";
+import { grammarOutput } from "@/stores/atoms/output";
+import { useRecoilState } from "recoil";
 
 export default function Grammar() {
   const [loading, setLoading] = useState(false);
+  const [text, setText] = useRecoilState(grammarPrompt);
+  const [apiOutput, setApiOutput] = useRecoilState(grammarOutput);
   return (
     <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2] pb-10 lg:pb-0 md:pt-20 lg:pt-0  relative flex lg:flex-row flex-col items-center lg:items-center justify-center lg:space-x-14 lg:justify-start lg:px-10 xl:px-20 overflow-y-scroll">
       <Navbar />
@@ -20,10 +25,17 @@ export default function Grammar() {
           setModelLoading={setLoading}
           textClassName={"h-80 md:h-60 lg:h-min"}
           obj={"generated_text"}
+          text={text}
+          setText={setText}
+          setApiOutput={setApiOutput}
         />
       </div>
       <div className="w-[80%] relative md:w-[60%] bg-dark xl:w-[43%] h-72 md:h-96 md:mt-20">
-        <TextOutput loading={loading} />
+        <TextOutput
+          setPrompt={setText}
+          textOutput={apiOutput}
+          loading={loading}
+        />
       </div>
     </div>
   );
