@@ -2,6 +2,7 @@ import { cn } from "../../util/cn";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 export const HoverEffect = ({ items, className }) => {
   let [hoveredIndex, setHoveredIndex] = useState(null);
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const HoverEffect = ({ items, className }) => {
               />
             )}
           </AnimatePresence>
-          <Card>
+          <Card experimental={item.experimental}>
             <CardTitle icon={item.icon} text={item.title}></CardTitle>
             <CardDescription>{item.description}</CardDescription>
           </Card>
@@ -47,7 +48,7 @@ export const HoverEffect = ({ items, className }) => {
   );
 };
 
-export const Card = ({ className, children }) => {
+export const Card = ({ className, children, experimental }) => {
   return (
     <div
       className={cn(
@@ -58,6 +59,11 @@ export const Card = ({ className, children }) => {
       <div className="relative z-50">
         <div className="p-4">{children}</div>
       </div>
+      {experimental && (
+        <div className="absolute top-4 -right-2">
+          <Badge variant="secondary">Experimental</Badge>
+        </div>
+      )}
     </div>
   );
 };
