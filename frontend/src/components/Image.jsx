@@ -1,11 +1,8 @@
 import React from "react";
 import ActionButton from "@/components/ActionButton";
 import { CiImageOn } from "react-icons/ci";
-import { output } from "@/stores/atoms/output";
-import { useRecoilValue } from "recoil";
 import Loader from "./Loader";
-export default function Image({ loading }) {
-  const imageBlob = useRecoilValue(output);
+export default function Image({ loading, imageBlob }) {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = imageBlob;

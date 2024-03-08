@@ -3,9 +3,14 @@ import Prompt from "@/components/Prompt";
 import { prompts } from "@/lib/prompts/tti.prompts";
 import React, { useState } from "react";
 import Image from "@/components/Image";
+import { imagePrompt } from "@/stores/atoms/prompt";
+import { imageOutput } from "@/stores/atoms/output";
+import { useRecoilState } from "recoil";
 
 export default function Images() {
   const [loading, setLoading] = useState(false);
+  const [text, setText] = useRecoilState(imagePrompt);
+  const [apiOutput, setApiOutput] = useRecoilState(imageOutput);
   return (
     <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2] pb-10 lg:pb-0 md:pt-20 lg:pt-0  relative flex lg:flex-row flex-col items-center lg:items-center justify-center lg:space-x-14 lg:justify-start lg:px-10 xl:px-20 overflow-y-scroll">
       <Navbar />
@@ -19,10 +24,13 @@ export default function Images() {
           responseType={"blob"}
           type={"image/jpeg"}
           setModelLoading={setLoading}
+          text={text}
+          setText={setText}
+          setApiOutput={setApiOutput}
         />
       </div>
       <div className="w-[80%] relative md:w-[60%] bg-dark xl:w-[43%] h-72 md:h-96 md:mt-20">
-        <Image loading={loading} />
+        <Image imageBlob={apiOutput} loading={loading} />
       </div>
     </div>
   );
