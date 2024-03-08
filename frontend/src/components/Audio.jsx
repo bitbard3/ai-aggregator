@@ -14,7 +14,7 @@ export default function Audio({ loading, audioBlob }) {
 
   return (
     <>
-      {audioBlob && (
+      {audioBlob && !loading && (
         <>
           <p className="text-light md:text-xl text-lg">Output</p>
           <audio controls src={audioBlob}></audio>
