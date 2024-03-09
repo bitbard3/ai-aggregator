@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../util/cn";
 
-export function Lamp({topText,bottomText}) {
+export function Lamp({ topText, bottomText }) {
   return (
     <LampContainer>
       <motion.h1
@@ -36,7 +36,7 @@ export const LampContainer = ({
       <div className="relative  flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0 ">
         <motion.div
           initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          animate={{ opacity: 1, width: "30rem" }}
           transition={{
             delay: 0.3,
             duration: 0.8,
@@ -52,7 +52,7 @@ export const LampContainer = ({
         </motion.div>
         <motion.div
           initial={{ opacity: 0.5, width: "15rem" }}
-          whileInView={{ opacity: 1, width: "30rem" }}
+          animate={{ opacity: 1, width: "30rem" }}
           transition={{
             delay: 0.3,
             duration: 0.8,
@@ -71,7 +71,7 @@ export const LampContainer = ({
         <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full bg-[#7448D3] opacity-50 blur-3xl"></div>
         <motion.div
           initial={{ width: "8rem" }}
-          whileInView={{ width: "16rem" }}
+          animate={{ width: "16rem" }}
           transition={{
             delay: 0.3,
             duration: 0.8,
@@ -81,7 +81,7 @@ export const LampContainer = ({
         ></motion.div>
         <motion.div
           initial={{ width: "15rem" }}
-          whileInView={{ width: "30rem" }}
+          animate={{ width: "30rem" }}
           transition={{
             delay: 0.3,
             duration: 0.8,
