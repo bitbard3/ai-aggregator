@@ -1,20 +1,15 @@
-import { userSchema } from "../controllers/validations/user.validation.js"
 import { User } from "../db/db.js"
 
 export const userExist = async (req, res, next) => {
-    const validReq = userSchema.safeParse(req.body)
-    if (!validReq.success) {
-        return res.status(411).json({ msg: "Invalid inputs" })
-    }
     try {
-        const user = await User.findOne({ email: req.body.email, password: req.body.password })
-        if (user) {
-            req.email = req.body.email
-            req.password = req.body.password
-            req.user = user
+        const existingUser = await User.findOne({ email: req.body.email })
+        if (existingUser) {
+            return res.status(403).json({ msg: "User already exist" })
         }
-        next()
+        else {
+            next()
+        }
     } catch (error) {
-        res.json({ error })
+        res.status(500).json({ error: "Internal Server Error" })
     }
 }

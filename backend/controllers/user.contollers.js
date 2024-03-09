@@ -1,11 +1,11 @@
 import { User } from "../db/db.js"
 
 export const signup = async (req, res) => {
-    if (req.user) {
-        return res.status(403).json({ msg: "User already exist" })
+    try {
+        await User.create({ email: req.email, password: req.password })
+        return res.json({ msg: "User created" })
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" })
     }
-    const email = req.body.email
-    const password = req.body.password
-    await User.create({ email, password })
-    return res.json({ msg: "User created" })
+
 }
