@@ -13,4 +13,7 @@ export const signup = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" })
     }
 }
-
+export const login = async (req, res) => {
+    const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
+    return res.json({ msg: "User loggedin", token })
+}
