@@ -29,7 +29,7 @@ export const LampContainer = ({
   return (
     <div
       className={cn(
-        "relative overflow-x-hidden overflow-y-visible  bg-dark w-full z-0 pt-32 md:pt-40",
+        "relative overflow-x-hidden overflow-y-visible  bg-dark w-full z-0 pt-32 md:pt-36",
         className
       )}
     >
