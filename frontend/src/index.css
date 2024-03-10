@@ -79,3 +79,34 @@ html {
   font-family: "Noto Sans", sans-serif;
   background-color: #0a0908;
 }
+.hero-box{
+  -webkit-box-shadow: 9px 13px 295px -12px rgba(116,72,211,0.63);
+  -moz-box-shadow: 9px 13px 295px -12px rgba(116,72,211,0.63);
+  box-shadow: 9px 13px 295px -12px rgba(116,72,211,0.63);
+}
+.hero-text {
+  --bg-size: 400%;
+  --color-one: hsl(205, 80%, 74%);
+  --color-two:  hsl(281, 36%, 70%);
+  font-family: sans-serif;
+  background: linear-gradient(
+      70deg,
+      var(--color-one),
+      var(--color-two),
+      var(--color-one)
+    )
+    0 0 / var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-text {
+    animation: move-bg 8s linear infinite;
+  }
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
