@@ -6,10 +6,12 @@ import Images from "./pages/Images";
 import Summary from "./pages/Summary";
 import Completion from "./pages/Completion";
 import Grammar from "./pages/Grammar";
+import Landing from "./pages/Landing";
 function App() {
   return (
     <>
       <Routes>
+      <Route path="/" element={<Landing />}></Route>
         <Route path="/models" element={<Navigate />}></Route>
         <Route path="/voice" element={<Voice />}></Route>
         <Route path="/beats" element={<Beats />}></Route>
