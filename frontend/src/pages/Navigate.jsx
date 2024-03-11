@@ -4,8 +4,8 @@ import { BsRobot } from "react-icons/bs";
 import { projects } from "@/lib/projects";
 export default function Navigate() {
   return (
-    <div className="min-h-screen w-full bg-black  bg-grid-white/[0.2]  relative flex items-center justify-center">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+    <div className="min-h-screen w-full bg-dark  bg-grid-white/[0.125]  relative flex items-center justify-center">
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-dark  [mask-image:radial-gradient(ellipse_at_center,transparent_1%,black)]"></div>
       <div className=" flex items-center justify-center flex-col min-h-screen min-w-screen z-10">
         <div className="flex items-center gap-3 mt-16 md:mt-0">
           <BsRobot className="text-light text-3xl"></BsRobot>
