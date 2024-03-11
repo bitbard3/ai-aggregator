@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import ModelButton from "@/components/ModelButton";
 import ModelHeader from "@/components/ModelHeader";
 import axios from "axios";
+import { useToast } from "@/components/ui/use-toast"
 import { models } from "@/lib/models";
 export default function Prompt({
   heading,
@@ -20,11 +21,20 @@ export default function Prompt({
   setText,
   setApiOutput,
 }) {
+  const { toast } = useToast()
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
   const API = aiModel.url;
   const onFetchClick = async () => {
     setLoading(true);
+    if (!(text.split(' ').length > 2)) {
+      setLoading(false);
+      toast({
+        description: "Prompt must be longer than 2 words",
+        variant: 'destructive'
+      })
+      return
+    }
     setModelLoading(true);
     try {
       const res = await axios.post(
@@ -45,7 +55,11 @@ export default function Prompt({
         setApiOutput(res.data[0][obj]);
       }
     } catch (error) {
-      console.log(error);
+      toast({
+        title: "Something went wrong",
+        description: "Uh-Oh! something went wrong",
+        variant: 'destructive'
+      })
     } finally {
       setLoading(false);
       setModelLoading(false);
