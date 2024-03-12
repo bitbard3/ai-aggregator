@@ -2,6 +2,7 @@ import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 import ActionButton from "./ActionButton";
 import Loader from "./Loader";
+import { useToast } from "@/components/ui/use-toast"
 
 export default function TextOutput({
   loading,
@@ -9,6 +10,7 @@ export default function TextOutput({
   setPrompt,
   textOutput,
 }) {
+  const { toast } = useToast()
   const handleDownload = () => {
     if (textOutput) {
       const link = document.createElement("a");
@@ -23,6 +25,9 @@ export default function TextOutput({
   };
   const handleCopy = async () => {
     await navigator.clipboard.writeText(textOutput);
+    toast({
+      description: 'Text copied!'
+    })
   };
   const handleContinue = () => {
     setPrompt(textOutput);
