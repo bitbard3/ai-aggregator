@@ -9,7 +9,6 @@ export default function GoogleSignin() {
     const navigate = useNavigate();
     const onSignupSuccessHandler = async (data) => {
         try {
-            console.log(data)
             const res = await axios.post('http://localhost:3000/user/signup', { googleJwt: data.credential })
             const token = res.data.token
             localStorage.setItem('token', token)
@@ -25,9 +24,20 @@ export default function GoogleSignin() {
                     variant: 'destructive'
                 })
             }
+            else {
+                toast({
+                    description: 'Something went wrong',
+                    variant: 'destructive',
+                })
+            }
         }
     }
-    const onSignupErrorHandler = () => { }
+    const onSignupErrorHandler = () => {
+        toast({
+            description: 'Something went wrong',
+            variant: 'destructive',
+        })
+    }
     return (
         <div className="mt-5">
             <GoogleLogin theme='filled_black'
