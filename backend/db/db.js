@@ -11,9 +11,16 @@ const userSchema = mongoose.Schema({
         unique: true,
         trim: true,
     },
+    googleSubject: {
+        type: String,
+        required: false,
+        unique: true
+    },
     password: {
         type: String,
-        required: true,
+        required: function () {
+            return this.googleSubject ? false : true
+        },
         minLength: 4,
     },
     credits: {
