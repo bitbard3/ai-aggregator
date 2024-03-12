@@ -24,6 +24,7 @@ export default function Prompt({
   const { toast } = useToast()
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
+  const [prevPrompt, setPrevPrompt] = useState('')
   const API = aiModel.url;
   const onFetchClick = async () => {
     setLoading(true);
@@ -35,6 +36,13 @@ export default function Prompt({
       })
       return
     }
+    if (prevPrompt == text) {
+      toast({
+        title: "Same output!",
+        description: "Same prompt will result in same output due to caching.Hint: Change prompt letter case",
+      })
+    }
+    setPrevPrompt(text)
     setModelLoading(true);
     try {
       const res = await axios.post(
