@@ -44,7 +44,7 @@ export const login = async (req, res) => {
                 return res.status(404).json({ msg: "User doesn't exist" })
             }
             else {
-                const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
+                const token = jwt.sign({ email: existingUser.email, userId: existingUser._id }, process.env.JWT_SECRET)
                 return res.json({ msg: "User loggedin", token })
             }
         } catch (error) {
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
                 return res.status(404).json({ msg: "User doesn't exist" })
             }
             else {
-                const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
+                const token = jwt.sign({ email: existingUser.email, userId: existingUser._id }, process.env.JWT_SECRET)
                 return res.json({ msg: "User loggedin", token })
             }
         } catch (error) {
