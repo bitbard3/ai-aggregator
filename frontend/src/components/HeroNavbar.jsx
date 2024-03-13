@@ -14,14 +14,19 @@ export default function HeroNavbar() {
                     <NavLink className={'pt-2.5'} to="/models">
                         <span className="text-lg hover:border-b-[1px] hover:opacity-95 text-light tracking-wide">Models</span>
                     </NavLink>
-                    <button className='text-lg'>
-                        <span className="  hover:border-b-[1px] hover:opacity-95 text-light tracking-wide">Login</span>
-                    </button>
+                    <Dialog>
+                        <DialogTrigger>
+                            <div className='text-lg'>
+                                <span className="  hover:border-b-[1px] hover:opacity-95 text-light tracking-wide">Login</span>
+                            </div>
+                        </DialogTrigger>
+                        <HeroDialog form={'Login'} />
+                    </Dialog>
                     <Dialog>
                         <DialogTrigger>
                             <CtaButton />
                         </DialogTrigger>
-                        <HeroDialog />
+                        <HeroDialog form={'Signup'} />
                     </Dialog>
                 </div>
             </div>

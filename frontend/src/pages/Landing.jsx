@@ -4,7 +4,6 @@ import { LampContainer } from "../components/ui/lamp";
 import HeroTyping from '@/components/HeroTyping';
 import HeroButton from '@/components/HeroButton';
 import HeroImg from '@/components/HeroImg';
-
 import HeroModelList from '@/components/HeroModelList';
 import HeroNavbar from '@/components/HeroNavbar';
 import HeroModelText from '@/components/HeroModelText';
