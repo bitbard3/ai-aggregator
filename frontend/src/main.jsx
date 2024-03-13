@@ -5,14 +5,18 @@ import "./index.css";
 import { RecoilRoot } from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster"
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RecoilRoot>
-        <Toaster />
-        <App />
-      </RecoilRoot>
-    </BrowserRouter>
-  </React.StrictMode>
+  <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <RecoilRoot>
+          <Toaster />
+          <App />
+        </RecoilRoot>
+      </BrowserRouter>
+    </React.StrictMode>
+  </GoogleOAuthProvider>
 );
