@@ -34,6 +34,35 @@ export const signup = async (req, res) => {
     }
 }
 export const login = async (req, res) => {
-    const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
-    return res.json({ msg: "User loggedin", token })
+    if (req.googleJwt) {
+        const client = new OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET);
+        try {
+            const googleToken = await client.verifyIdToken({ idToken: req.googleJwt, audience: process.env.CLIENT_ID })
+            const payload = googleToken.getPayload()
+            const existingUser = await User.findOne({ email: payload.email })
+            if (!existingUser) {
+                return res.status(404).json({ msg: "User doesn't exist" })
+            }
+            else {
+                const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
+                return res.json({ msg: "User loggedin", token })
+            }
+        } catch (error) {
+            res.status(500).json({ error: "Internal Server Error" })
+        }
+    }
+    else {
+        try {
+            const existingUser = await User.findOne({ email: req.body.email, password: req.body.password })
+            if (!existingUser) {
+                return res.status(404).json({ msg: "User doesn't exist" })
+            }
+            else {
+                const token = jwt.sign({ email: req.email, userId: req.userId }, process.env.JWT_SECRET)
+                return res.json({ msg: "User loggedin", token })
+            }
+        } catch (error) {
+            res.status(500).json({ error: "Internal Server Error" })
+        }
+    }
 }
