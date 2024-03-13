@@ -24,3 +24,11 @@ export const generate = async (req, res) => {
         return res.status(500).json({ msg: "Something went wrong" })
     }
 }
+export const credits = async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.userId })
+        res.json({ credits: user.credits })
+    } catch (error) {
+        return res.status(404).json({ msg: "User doesnt exist" })
+    }
+}
