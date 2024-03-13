@@ -7,7 +7,7 @@ import GoogleSignin from './GoogleSignin'
 import { authSchema } from '@/util/validations/auth.validation'
 import { useToast } from "@/components/ui/use-toast"
 import { useNavigate } from "react-router-dom";
-export default function HeroDialog() {
+export default function HeroDialog({ form }) {
     const { toast } = useToast()
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
@@ -31,17 +31,30 @@ export default function HeroDialog() {
             return
         }
         try {
-            const res = await axios.post(`${import.meta.env.VITE_URL}/user/signup`, { email, password })
+            const res = await axios.post(`${import.meta.env.VITE_URL}/user/${form}`, { email, password })
             const token = res.data.token
             localStorage.setItem('token', token)
-            toast({
-                description: 'Signed in successfully',
-                variant: 'success'
-            })
+            if (form == 'Login') {
+                toast({
+                    description: 'Logged in successfully',
+                    variant: 'success'
+                })
+            } else {
+                toast({
+                    description: 'Signed in successfully',
+                    variant: 'success'
+                })
+            }
             navigate('/models')
         } catch (error) {
             if (error.response.status == 403) {
                 setError("User already exist")
+            }
+            if (error.response.status == 404) {
+                toast({
+                    description: "User doesn't exist! or Incorrect password",
+                    variant: 'destructive'
+                })
             }
             else {
                 toast({
@@ -57,7 +70,7 @@ export default function HeroDialog() {
     return (
         <DialogContent>
             <div className="flex flex-col items-center justify-center">
-                <p className="text-2xl text-light font-medium">Signup!</p>
+                <p className="text-2xl text-light font-medium">{form}!</p>
                 <p className="text-neutral-500 text-sm pt-2.5">Enter your details</p>
                 <div className="w-full mt-8 flex flex-col items-center">
                     <div className="w-[80%] mb-0.5">
@@ -83,14 +96,14 @@ export default function HeroDialog() {
                             role="status"
                         ></div>
                     }
-                    Signup
+                    {form}
                 </button>
                 <div className="w-[90%] flex mt-8 items-center">
                     <div className="w-[45%] h-[1px] bg-neutral-400"></div>
                     <span className="text-neutral-300 opacity-90 mx-3 text-sm font-medium">or</span>
                     <div className="w-[45%] h-[1px] bg-neutral-400"></div>
                 </div>
-                <GoogleSignin />
+                <GoogleSignin form={form} />
             </div>
         </DialogContent>
     )
