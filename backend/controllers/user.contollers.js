@@ -66,3 +66,6 @@ export const login = async (req, res) => {
         }
     }
 }
+export const validToken = (req, res) => {
+    res.json({ msg: "You are authorized" });
+}
