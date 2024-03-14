@@ -1,8 +1,10 @@
 import React from "react";
 import { RiCopperCoinLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-
+import { credit } from "@/stores/atoms/credit";
+import { useRecoilValue } from "recoil";
 export default function Navbar() {
+  const credits = useRecoilValue(credit)
   const navigate = useNavigate();
 
   return (
@@ -24,7 +26,7 @@ export default function Navbar() {
         </div>
         <div className=" px-3 rounded-md py-1 flex items-center">
           <RiCopperCoinLine className="h-5 w-5 text-light pt-[1px]" />
-          <p className=" text-light">25</p>
+          <p className=" text-light">{credits}</p>
         </div>
       </div>
     </div>
