@@ -1,6 +1,5 @@
 import { User } from "../db/db.js"
 import dotenv from 'dotenv'
-import jwt from 'jsonwebtoken'
 import { creditSchema } from "./validations/credit.validation.js"
 dotenv.config()
 
@@ -31,4 +30,19 @@ export const credits = async (req, res) => {
     } catch (error) {
         return res.status(404).json({ msg: "User doesnt exist" })
     }
+}
+export const resetCredits = async (req, res) => {
+    const authToken = (req.headers.authorization || '')
+        .split('Bearer ')
+        .at(1)
+    if (!authToken || authToken != process.env.CRON_SECRET) {
+        return res.status(403).json({ msg: "Not authorized" })
+    }
+    try {
+        await User.updateMany({}, { $set: { credits: 25 } })
+        return res.json({ msg: "User updated" })
+    } catch (error) {
+        return res.status(500).json({ msg: "Something went wrong" })
+    }
+
 }
