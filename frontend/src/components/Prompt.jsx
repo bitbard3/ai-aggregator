@@ -6,6 +6,8 @@ import ModelHeader from "@/components/ModelHeader";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast"
 import { models } from "@/lib/models";
+import { credit } from "@/stores/atoms/credit";
+import { useRecoilState } from "recoil";
 export default function Prompt({
   heading,
   placeholder,
@@ -25,6 +27,7 @@ export default function Prompt({
   const aiModel = models.find((item) => item.model == model);
   const [loading, setLoading] = useState(false);
   const [prevPrompt, setPrevPrompt] = useState('')
+  const [credits, setCredits] = useRecoilState(credit)
   const API = aiModel.url;
   const onFetchClick = async () => {
     setLoading(true);
@@ -45,6 +48,15 @@ export default function Prompt({
     setPrevPrompt(text)
     setModelLoading(true);
     try {
+      if (prevPrompt != text) {
+        const tokenRes = await axios.post(`${import.meta.env.VITE_URL}/credit/generate`,
+          { credits: 5 }, {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          }
+        })
+        setCredits((prev) => prev - 5)
+      }
       const res = await axios.post(
         API,
         { inputs: text },
@@ -63,11 +75,22 @@ export default function Prompt({
         setApiOutput(res.data[0][obj]);
       }
     } catch (error) {
-      toast({
-        title: "Something went wrong",
-        description: "Uh-Oh! something went wrong",
-        variant: 'destructive'
-      })
+      console.log(error)
+      if (error.response.status == 400) {
+        toast({
+          description: "You dont have sufficent balance",
+          variant: 'destructive'
+        })
+        setPrevPrompt('')
+      }
+      else {
+        toast({
+          title: "Something went wrong",
+          description: "Uh-Oh! something went wrong",
+          variant: 'destructive'
+        })
+        setPrevPrompt('')
+      }
     } finally {
       setLoading(false);
       setModelLoading(false);
