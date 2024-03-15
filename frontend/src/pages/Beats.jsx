@@ -12,7 +12,7 @@ export default function Beats() {
   const [text, setText] = useRecoilState(beatsPrompt);
   const [apiOutput, setApiOutput] = useRecoilState(beatsOutput);
   return (
-    <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2]  relative flex items-start md:items-center justify-center">
+    <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.1] md:bg-grid-small-white/[0.2] relative flex items-start md:items-center justify-center">
       <Navbar />
       <div className="h-full w-[80%] md:w-[70%] lg:w-[50%] flex flex-col justify-around md:mt-20 md:py-0 py-32">
         <Prompt

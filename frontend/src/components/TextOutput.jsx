@@ -36,11 +36,11 @@ export default function TextOutput({
     <>
       <Textarea
         readOnly
-        className="h-full pb-8"
+        className="h-[80%] md:h-full pb-8"
         placeholder="Your output will be shown here..."
         value={textOutput}
       ></Textarea>
-      <div className=" w-full flex justify-between">
+      <div className=" w-full min-h-[20%] flex justify-between">
         <div className="flex items-center md:gap-5 gap-2">
           <ActionButton
             onClick={handleCopy}
@@ -62,7 +62,7 @@ export default function TextOutput({
         />
       </div>
       {loading && (
-        <div className="h-full z-10 w-full bg-neutral-800 bg-opacity-70 flex items-center justify-center absolute top-0 bottom-0">
+        <div className="h-[80%] md:h-full z-10 w-full bg-neutral-800 bg-opacity-70 flex absolute items-center justify-center md:absolute top-0 bottom-0">
           <Loader size={60} />
         </div>
       )}

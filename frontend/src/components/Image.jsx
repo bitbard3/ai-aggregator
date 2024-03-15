@@ -13,7 +13,7 @@ export default function Image({ loading, imageBlob }) {
   };
   return (
     <>
-      <div className="border border-neutral-400 w-full h-full border-opacity-40 flex flex-col items-center justify-center">
+      <div className="border border-neutral-400 md:w-full h-[80%] md:h-full border-opacity-40 flex flex-col items-center justify-center">
         {imageBlob ? (
           <div className="w-full h-full overflow-hidden relative">
             <img
@@ -34,7 +34,7 @@ export default function Image({ loading, imageBlob }) {
         />
       </div>
       {loading && (
-        <div className="h-full z-10 w-full bg-neutral-800 bg-opacity-70 flex items-center justify-center absolute top-0 bottom-0">
+        <div className="h-[80%] md:h-full z-10 w-full bg-neutral-800 bg-opacity-70 flex items-center justify-center absolute top-0 bottom-0">
           <Loader size={60} />
         </div>
       )}

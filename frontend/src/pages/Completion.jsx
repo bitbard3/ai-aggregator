@@ -12,7 +12,7 @@ export default function Completion() {
   const [text, setText] = useRecoilState(completionPrompt);
   const [apiOutput, setApiOutput] = useRecoilState(completionOutput);
   return (
-    <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.2] pb-10 lg:pb-0 md:pt-20 lg:pt-0  relative flex lg:flex-row flex-col items-center lg:items-center justify-center lg:space-x-14 lg:justify-start lg:px-10 xl:px-20">
+    <div className="min-h-screen min-w-screen bg-black bg-grid-small-white/[0.1] md:bg-grid-small-white/[0.2] pb-10 lg:pb-0 md:pt-20 lg:pt-0  relative flex lg:flex-row flex-col items-center lg:items-center justify-center lg:space-x-14 lg:justify-start lg:px-10 xl:px-20">
       <Navbar />
       <div className="h-full w-[80%] md:w-[80%] lg:w-[70%] flex flex-col justify-around md:mt-20 md:py-0 pt-32 pb-5">
         <Prompt
@@ -30,7 +30,7 @@ export default function Completion() {
           setApiOutput={setApiOutput}
         />
       </div>
-      <div className="w-[80%] relative md:w-[60%] bg-dark xl:w-[43%] h-72 md:h-96 md:mt-20">
+      <div className="w-[80%] relative md:w-[60%] xl:w-[43%] h-72 md:h-96 md:mt-20">
         <TextOutput
           setPrompt={setText}
           textOutput={apiOutput}
