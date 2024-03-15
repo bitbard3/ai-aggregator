@@ -25,6 +25,7 @@ export default function GoogleSignin({ form }) {
             }
             navigate('/models')
         } catch (error) {
+            console.log(error)
             if (error.response.status == 403) {
                 toast({
                     description: 'User already exist',
