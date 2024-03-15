@@ -11,7 +11,7 @@ import Footer from '@/components/Footer';
 
 export default function Landing() {
     return (
-        <div className='bg-dark'>
+        <div className='bg-dark overflow-x-hidden'>
             <HeroNavbar />
             <LampContainer>
                 <motion.h1
