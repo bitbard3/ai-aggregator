@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from './Spinner';
 
 export default function GoogleSignin({ form }) {
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const { toast } = useToast()
     const navigate = useNavigate();
     const onSignupSuccessHandler = async (data) => {
