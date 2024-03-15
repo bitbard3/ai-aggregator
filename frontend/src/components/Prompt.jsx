@@ -48,15 +48,6 @@ export default function Prompt({
     setPrevPrompt(text)
     setModelLoading(true);
     try {
-      if (prevPrompt != text) {
-        const tokenRes = await axios.post(`${import.meta.env.VITE_URL}/credit/generate`,
-          { credits: 5 }, {
-          headers: {
-            Authorization: localStorage.getItem('token'),
-          }
-        })
-        setCredits((prev) => prev - 5)
-      }
       const res = await axios.post(
         API,
         { inputs: text },
@@ -67,6 +58,15 @@ export default function Prompt({
           responseType: responseType,
         }
       );
+      if (prevPrompt != text) {
+        const tokenRes = await axios.post(`${import.meta.env.VITE_URL}/credit/generate`,
+          { credits: 5 }, {
+          headers: {
+            Authorization: localStorage.getItem('token'),
+          }
+        })
+        setCredits((prev) => prev - 5)
+      }
       if (responseType === "blob") {
         const blob = new Blob([res.data], { type: type });
         const assetUrl = URL.createObjectURL(blob);
