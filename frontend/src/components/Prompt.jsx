@@ -8,6 +8,7 @@ import { useToast } from "@/components/ui/use-toast"
 import { models } from "@/lib/models";
 import { credit } from "@/stores/atoms/credit";
 import { useRecoilState } from "recoil";
+import explicitWords from '../lib/negativeWords.json'
 export default function Prompt({
   heading,
   placeholder,
@@ -29,6 +30,7 @@ export default function Prompt({
   const [prevPrompt, setPrevPrompt] = useState('')
   const [credits, setCredits] = useRecoilState(credit)
   const API = aiModel.url;
+  const explicitWordsArray = explicitWords.map(word => word.toLowerCase())
   const onFetchClick = async () => {
     setLoading(true);
     if (!(text.split(' ').length > 2)) {
@@ -38,6 +40,15 @@ export default function Prompt({
         variant: 'destructive'
       })
       return
+    }
+    const containsExplicitWord = explicitWordsArray.some(word => text.toLowerCase().includes(word));
+    if (containsExplicitWord) {
+      setLoading(false);
+      toast({
+        description: "You've used explicit language",
+        variant: "destructive",
+      });
+      return;
     }
     if (prevPrompt == text) {
       toast({
