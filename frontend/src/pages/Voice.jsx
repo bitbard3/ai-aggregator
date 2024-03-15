@@ -32,6 +32,9 @@ export default function Voice() {
           <Audio audioBlob={apiOutput} loading={loading} />
         </div>
       </div>
+      <div className="absolute bottom-1 w-full hidden xl:flex justify-center">
+        <p className="text-sm text-neutral-600">This is an experimental model might generate wrong content!</p>
+      </div>
     </div>
   );
 }
