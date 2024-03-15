@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios'
 import { useToast } from "@/components/ui/use-toast"
 import { useNavigate } from "react-router-dom";
+import Spinner from './Spinner';
 
 export default function GoogleSignin({ form }) {
+    const [loading, setLoading] = useState(true)
     const { toast } = useToast()
     const navigate = useNavigate();
     const onSignupSuccessHandler = async (data) => {
         try {
+            setLoading(true)
             const res = await axios.post(`${import.meta.env.VITE_URL}/user/${form}`, { googleJwt: data.credential })
             const token = res.data.token
             localStorage.setItem('token', token)
@@ -46,6 +49,9 @@ export default function GoogleSignin({ form }) {
                 })
             }
         }
+        finally {
+            setLoading(false)
+        }
     }
     const onSignupErrorHandler = () => {
         toast({
@@ -55,12 +61,18 @@ export default function GoogleSignin({ form }) {
     }
     return (
         <div className="mt-5">
-            <GoogleLogin theme='filled_black'
-                size='large'
-                width={'250'}
-                onSuccess={onSignupSuccessHandler}
-                onError={onSignupErrorHandler}
-            />;
+            {loading ?
+                <Spinner />
+                :
+                (
+                    <GoogleLogin theme='filled_black'
+                        size='large'
+                        width={'250'}
+                        onSuccess={onSignupSuccessHandler}
+                        onError={onSignupErrorHandler}
+                    />
+                )
+            }
         </div>
     )
 }
