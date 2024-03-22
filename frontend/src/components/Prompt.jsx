@@ -41,7 +41,11 @@ export default function Prompt({
       })
       return
     }
-    const containsExplicitWord = explicitWordsArray.some(word => text.toLowerCase().includes(word));
+    const containsExplicitWord = explicitWordsArray.some(word => {
+      const regex = new RegExp(`\\b${word}\\b`, 'i');
+      return regex.test(text);
+    });
+
     if (containsExplicitWord) {
       setLoading(false);
       toast({
@@ -50,6 +54,7 @@ export default function Prompt({
       });
       return;
     }
+
     if (prevPrompt == text) {
       toast({
         title: "Same output!",
